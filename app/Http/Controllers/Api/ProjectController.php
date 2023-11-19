@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Project;
 
 class ProjectController extends Controller
 {
@@ -12,7 +12,7 @@ class ProjectController extends Controller
     {
         return response()->json([
             'status' => 'Success',
-            'result' => Project::paginate(20)
+            'result' => Project::with('type', 'technologies')->paginate(10)
         ]);
     }
 }
